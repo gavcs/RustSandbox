@@ -1,11 +1,20 @@
-fn main() {
-    let x = 5;
+use std::io;
 
-    let x = x + 1;
-    {
-        let x = x * 2;
-        println!("The value of x in the inner scope is {x}");
-    }
-    
-    println!("The value of x is {x}");
+fn main() {
+    let a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    let mut index = String::new();
+
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line.");
+
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Index entered was not a number");
+
+    let element = a[index];
+
+    println!("The element at index {index} is {element}");
 }
