@@ -1,7 +1,7 @@
 # This is the repo that I use to work through the Rust Book.
 
 ## Link to Rust Web Server
-# No repo yet, check back soon
+### No repo yet, check back soon
 
 ## Progress & Personal Notes
 I haven't had a ton of time this summer to work on it with traveling and some other personal stuff going on, but I've put in a decent amount of work as of 7/9/24. I plan to finish the entire Rust Book by 7/15 (next monday), so that I have enough time to work on the web server.
