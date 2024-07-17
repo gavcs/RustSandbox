@@ -1,22 +1,22 @@
-// #[derive(Debug)]
-// struct Rectangle {
-//     width: u32,
-//     height: u32,
-// }
+#[derive(Debug)]
+pub struct Rectangle {
+    pub width: u32,
+    pub height: u32,
+}
 
-// impl Rectangle {
-//     fn can_hold(&self, other: &Rectangle) -> bool {
-//         self.width > other.width && self.height > other.height
-//     }
-// }
+impl Rectangle {
+    pub fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+}
 
-// pub fn add(left: usize, right: usize) -> usize {
-//     left + right
-// }
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
 
-// fn add_two(n: i32) -> i32 {
-//     n + 2
-// }
+pub fn add_two(n: i32) -> i32 {
+    n + 2
+}
 
 pub fn greeting(name: &str) -> String{
     format!("Hello, {name}!")
