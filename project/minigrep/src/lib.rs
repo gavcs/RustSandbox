@@ -10,13 +10,27 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() != 3 {
+    pub fn build(
+        mut args: impl Iterator <Item = String>,
+    ) -> Result<Config, &'static str> {
+        args.next();
+
+        let substring = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a query string"),
+        };
+
+        let filename = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a file path"),
+        };
+        
+        if args.next() != None {
             return Err("Incorrect usage, example of correct usage:\n\t'cargo run -- search_string file_path'");
         }
-        let substring = args[1].clone();
-        let filename = args[2].clone();
+
         let ignore_case = env::var("IGNORE_CASE").is_ok();
+
         Ok(Config{substring, filename, ignore_case})
     }
 
@@ -42,24 +56,11 @@ pub fn run(cfg: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(substring: &str, contents: &'a str) -> Vec<&'a str> { 
-    let mut results = Vec::new();
-    for line in contents.lines() {
-        if line.contains(substring) {
-            results.push(line);
-        }
-    }
-    results
+    contents.lines().filter(|line| line.contains(substring)).collect()
 }
 
 pub fn search_case_insensitive<'a>(substring: &str, contents: &'a str) -> Vec<&'a str> {
-    let substring = substring.to_lowercase();
-    let mut results = Vec::new();
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&substring) {
-            results.push(line);
-        }
-    }
-    results
+    contents.lines().filter(|line| line.to_lowercase().contains(&substring.to_lowercase())).collect()
 }
 
 #[cfg(test)]
