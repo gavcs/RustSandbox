@@ -1,3 +1,17 @@
+//! # Adding 2 Test
+//! 
+//! `add2test` contains a single function `add_two` and is used to learn documentation and testing.
+
+/// adds two to the number given.
+/// 
+/// # Examples
+/// 
+/// ```
+/// let arg = 5;
+/// let answer = add2test::add_two(arg);
+/// 
+/// assert_eq!(7, answer);
+/// ```
 pub fn add_two(a: i32) -> i32 {
     a + 2
 }
